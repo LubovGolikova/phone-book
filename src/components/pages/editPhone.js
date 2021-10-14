@@ -12,11 +12,11 @@ import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 //   "address": string,
 //   "registered":  string - required
 
-export default function Add() {
+export default function EditPhone() {
     return (
         <div>
             <div className="container">
-                <h1>Add phone</h1>
+                <h1>Edit phone</h1>
                 <Form action="">
                     <FormGroup row className="mt-3">
                         <Label for="first" sm={1}>First name</Label>
