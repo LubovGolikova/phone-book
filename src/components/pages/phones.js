@@ -1,8 +1,8 @@
-import data from '../data/phones.json';
 import { Card, CardBody, CardTitle,  Button } from 'reactstrap';
-import Phone from "../pages/phone";
+import data from '../data/phones.json';
 import {ROUTES} from "../constants/routes";
 import {Link} from "react-router-dom";
+
 
 export default function Phones() {
     const newdata = data.map((data) => {
@@ -10,7 +10,7 @@ export default function Phones() {
             <Card key={data.id}>
                 <CardBody>
                     <CardTitle tag="h5">{data.name.last + ' '+ data.name.first }</CardTitle>
-                    <Link component={Phone} to={ROUTES.dynamic.detail(data.id)}>
+                    <Link to={ROUTES.dynamic.details(data.id)}>
                         <Button>details</Button>
                     </Link>
                 </CardBody>

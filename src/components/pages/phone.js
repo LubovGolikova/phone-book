@@ -2,15 +2,18 @@ import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'react
 
 export default function phone({chosenPhone}) {
     return (
-        <div>
-            <Card key={chosenPhone.id}>
-                <CardBody>
-                    <CardTitle tag="h5">{chosenPhone.name.last + ' '+ chosenPhone.name.first }</CardTitle>
-                    <CardSubtitle tag="h6" className="mb-2 text-muted">{chosenPhone.phone}</CardSubtitle>
-                    <CardText>{chosenPhone.company}</CardText>
-                    <Button >edit</Button>
-                </CardBody>
-            </Card>
-        </div>
+        <>
+            <div className="container">
+                <h1>Phone details</h1>
+                <Card key={chosenPhone.id}>
+                    <CardBody>
+                        <CardTitle tag="h5">{chosenPhone.name.last + ' '+ chosenPhone.name.first }</CardTitle>
+                        <CardSubtitle tag="h6" className="mb-2 text-muted">{chosenPhone.phone}</CardSubtitle>
+                        <CardText>{chosenPhone.company}</CardText>
+                        <Button >edit</Button>
+                    </CardBody>
+                </Card>
+            </div>
+        </>
     );
 }

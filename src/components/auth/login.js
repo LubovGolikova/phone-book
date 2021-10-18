@@ -1,4 +1,7 @@
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import {ROUTES} from "../constants/routes";
+
 export default function Login() {
     return (
         <div className="container">
@@ -19,6 +22,7 @@ export default function Login() {
                 <FormGroup check row className="mt-3">
                     <Col sm={{size: 10, offset: 2}}>
                         <Button>Login</Button>
+                        <Link to={ROUTES.static.register} className="btn btn-link">Register</Link>
                     </Col>
                 </FormGroup>
             </Form>
