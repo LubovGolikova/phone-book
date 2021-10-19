@@ -30,9 +30,10 @@ const vpassword = (value) => {
     }
 };
 export default function register() {
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    let [formState, setFormState] = useState({email:'',password:''});
-    let { email, password} = formState;
+    const [formState, setFormState] = useState({email:'',password:''});
+    const { email, password} = formState;
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const form = useRef();

@@ -1,15 +1,21 @@
 import './App.css';
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {ROUTES} from "./components/constants/routes";
+import {BrowserRouter as Router, Redirect, Switch, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import {ROUTES} from "./components/constants/routes";
+import Login from './components/auth/login';
+import Register from './components/auth/register'
 
 import Phones from './components/pages/phones';
 import AddPhone from './components/pages/addPhone';
-import Login from './components/auth/login';
-import Register from './components/auth/register'
-import RouterLink from './components/router/routerLink';
+import EditPhone from "./components/pages/editPhone";
 import Phone from './components/pages/phone';
+import NotFound from './components/pages/notFound';
+import Main from './components/pages/main';
+
+import RouterLink from './components/router/routerLink';
+
 
 // /login — страница авторизации
 // /:id — просмотр одного телефона
@@ -23,12 +29,15 @@ function App() {
           <div>
             <RouterLink/>
             <Switch>
-              <Route path={ROUTES.static.phones} component={Phones}/>
-              <Route path={ROUTES.static.add} component={AddPhone}/>
-              <Route path={ROUTES.static.login} component={Login}/>
-              <Route path={ROUTES.static.register} component={Register}/>
-              <Route path={ROUTES.dynamic.details()} component={Phone}/>
-              <Route path={ROUTES.dynamic.edit()} component={Register}/>
+              <Route exact path={ROUTES.static.main} component={Main}/>
+              <Route exact path={ROUTES.static.phones} component={Phones}/>
+              <Route exact path={ROUTES.static.add} component={AddPhone}/>
+              <Route exact path={ROUTES.static.login} component={Login}/>
+              <Route exact path={ROUTES.static.register} component={Register}/>
+              <Route exact path={ROUTES.dynamic.details()} component={Phone}/>
+              <Route exact path={ROUTES.dynamic.edit()} component={EditPhone}/>
+              <Route exact path={ROUTES.static.edit} component={EditPhone}/>
+              <Redirect to={ROUTES.static.notFound} component={NotFound} />
             </Switch>
           </div>
         </Router>

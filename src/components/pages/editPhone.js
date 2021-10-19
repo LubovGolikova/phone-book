@@ -68,7 +68,7 @@ export default function EditPhone() {
                     </FormGroup>
                     <FormGroup check row className="mt-3">
                         <Col sm={{size: 10, offset: 2}}>
-                            <Button>Add phone</Button>
+                            <Button>Edit phone</Button>
                         </Col>
                     </FormGroup>
                 </Form>

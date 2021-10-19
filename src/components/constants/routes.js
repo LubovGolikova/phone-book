@@ -1,12 +1,15 @@
 export const ROUTES = {
     static: {
+        main: "/",
         phones: '/phones',
         add: '/add',
         login: '/login',
-        register: '/register'
+        register: '/register',
+        edit: '/edit',
+        notFound: "/404",
     },
     dynamic: {
-        details: (id = ':id') => `detail/${id}`,
-        edit: (id = ':id') => `edit/${id}`
+        details: (id = ':id') => `/details/${id}`,
+        edit: (id = ':id') => `/edit/${id}`
     }
 }
