@@ -1,7 +1,6 @@
 export const ROUTES = {
     static: {
         main: "/",
-        phones: '/phones',
         add: '/add',
         login: '/login',
         register: '/register',

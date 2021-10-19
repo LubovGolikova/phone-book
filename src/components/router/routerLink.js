@@ -9,7 +9,7 @@ export default function RouterLink() {
                 <div className="container">
                     <div className="navbar-nav">
                         <li className="nav-item">
-                            <Link to={ROUTES.static.phones} className="nav-link">
+                            <Link to={ROUTES.static.main} className="nav-link">
                                 Phone Book
                             </Link>
                         </li>

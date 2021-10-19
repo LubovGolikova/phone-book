@@ -12,7 +12,7 @@ import AddPhone from './components/pages/addPhone';
 import EditPhone from "./components/pages/editPhone";
 import Phone from './components/pages/phone';
 import NotFound from './components/pages/notFound';
-import Main from './components/pages/main';
+
 
 import RouterLink from './components/router/routerLink';
 
@@ -29,8 +29,7 @@ function App() {
           <div>
             <RouterLink/>
             <Switch>
-              <Route exact path={ROUTES.static.main} component={Main}/>
-              <Route exact path={ROUTES.static.phones} component={Phones}/>
+              <Route exact path={ROUTES.static.main} component={Phones}/>
               <Route exact path={ROUTES.static.add} component={AddPhone}/>
               <Route exact path={ROUTES.static.login} component={Login}/>
               <Route exact path={ROUTES.static.register} component={Register}/>

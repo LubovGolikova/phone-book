@@ -1,34 +1,43 @@
-import {Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Col, Button,  FormGroup, Label} from 'reactstrap';
 import {useState, useRef} from "react";
 import {isEmail} from "validator";
+
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+
+
 const required = (value) => {
     if (!value) {
         return (
-        <div className="alert alert-danger" role="alert">
-            This field is required!
-        </div>
+            <div className="alert alert-danger" role="alert">
+                This field is required!
+            </div>
         );
     }
 };
+
 const validEmail = (value) => {
     if (!isEmail(value)) {
         return (
-        <div className="alert alert-danger" role="alert">
-            This is not a valid email.
-        </div>
-        );
-    }
-}
-const vpassword = (value) => {
-    let passwordValid = value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/);
-    if (passwordValid) {
-        return (
-        <div className="alert alert-danger" role="alert">
-            The password must be at least 8 characters, must contain at least 1 number, 1 capital letter and 1 small letter.
-        </div>
+            <div className="alert alert-danger" role="alert">
+                This is not a valid email.
+            </div>
         );
     }
 };
+const validPassword = (value) => {
+    console.log("gdfg");
+    let passwordValid = value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/);
+    if (passwordValid) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                The password must be at least 8 characters, must contain at least 1 number, 1 capital letter and 1 small letter.
+            </div>
+        );
+    }
+};
+
 export default function register() {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -37,6 +46,8 @@ export default function register() {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const form = useRef();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const checkBtn = useRef();
 
     function onValueChange(e) {
         let value = e.target.value;
@@ -45,12 +56,12 @@ export default function register() {
     }
     function handleRegister(e) {
         e.preventDefault();
+        form.current.validateAll();
         localStorage.clear();
         localStorage.setItem('email',formState.email);
         localStorage.setItem('password',formState.password);
         console.log(localStorage);
     }
-
 
     return (
         <>
@@ -80,7 +91,7 @@ export default function register() {
                                 id="password"
                                 value={password}
                                 onChange={onValueChange}
-                                validation={[required, vpassword]}
+                                validation={[required, validPassword]}
                                 placeholder="Enter password"
                             />
                         </Col>
@@ -90,6 +101,7 @@ export default function register() {
                             <Button>Register</Button>
                         </Col>
                     </FormGroup>
+                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
                 </Form>
             </div>
         </>
