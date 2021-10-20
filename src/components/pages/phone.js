@@ -1,12 +1,12 @@
- // import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
- import {Link, useParams} from 'react-router-dom';
- import {ROUTES} from "../constants/routes";
- import {Button} from "reactstrap";
- // import data from '../data/phones.json';
+// import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {Link, useParams} from 'react-router-dom';
+import {ROUTES} from "../constants/routes";
+import {Button} from "reactstrap";
+// import data from '../data/phones.json';
 
-export default function Phone({chosenPhone}) {
+const Phone = ({chosenPhone}) => {
     const {id} = useParams();
-    console.log(id)
+    console.log(id);
     console.log(chosenPhone);
     return (
         <>
@@ -26,4 +26,5 @@ export default function Phone({chosenPhone}) {
             </div>
         </>
     );
-}
+};
+export default Phone;

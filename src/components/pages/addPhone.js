@@ -1,4 +1,4 @@
-import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 // "id": string, - required
 // "isActive": boolean, - required
 // "age": number, (от 1 до 120)
@@ -12,7 +12,7 @@ import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 //   "address": string,
 //   "registered":  string - required
 
-export default function AddPhone() {
+const AddPhone = () => {
     return (
         <div>
             <div className="container">
@@ -60,8 +60,8 @@ export default function AddPhone() {
                             <Input type="text" name="address" id="address" placeholder="Enter address"/>
                         </Col>
                     </FormGroup>
-                    <FormGroup row  className="mt-3">
-                        <Label for="isActive"  sm={1}>Active</Label>
+                    <FormGroup row className="mt-3">
+                        <Label for="isActive" sm={1}>Active</Label>
                         <Col sm={3}>
                             <Input className="mt-2" type="checkbox" name="isActive" id="isActive"/>
                         </Col>
@@ -75,4 +75,6 @@ export default function AddPhone() {
             </div>
         </div>
     );
-}
+};
+
+export default AddPhone;

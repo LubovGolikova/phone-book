@@ -12,15 +12,10 @@ import AddPhone from './components/pages/addPhone';
 import EditPhone from "./components/pages/editPhone";
 import Phone from './components/pages/phone';
 import NotFound from './components/pages/notFound';
-
-
 import RouterLink from './components/router/routerLink';
 
 
-// /login — страница авторизации
-// /:id — просмотр одного телефона
-// /add- добавление телефона
-// /edit/:id — обновление телефона
+
 
 function App() {
   return (

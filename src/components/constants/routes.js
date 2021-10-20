@@ -8,7 +8,7 @@ export const ROUTES = {
         notFound: "/404",
     },
     dynamic: {
-        details: (id = ':id') => `/details/${id}`,
+        details: (id = ':id') => `/${id}`,
         edit: (id = ':id') => `/edit/${id}`
     }
-}
+};

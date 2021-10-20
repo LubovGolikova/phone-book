@@ -2,9 +2,9 @@ import {Link} from "react-router-dom";
 import React from "react";
 import {ROUTES} from "../constants/routes";
 
-export default function RouterLink() {
+const RouterLink = () => {
     return (
-        <div>
+        <>
             <nav className="navbar navbar-expand navbar-dark bg-dark">
                 <div className="container">
                     <div className="navbar-nav">
@@ -33,6 +33,7 @@ export default function RouterLink() {
                     </div>
                 </div>
             </nav>
-        </div>
+        </>
     );
-}
+};
+export default RouterLink;

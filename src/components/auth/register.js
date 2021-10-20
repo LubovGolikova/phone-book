@@ -1,4 +1,4 @@
-import {Col, Button,  FormGroup, Label} from 'reactstrap';
+import {Col, Button, FormGroup, Label} from 'reactstrap';
 import {useState, useRef} from "react";
 import {isEmail} from "validator";
 
@@ -32,42 +32,44 @@ const validPassword = (value) => {
     if (passwordValid) {
         return (
             <div className="alert alert-danger" role="alert">
-                The password must be at least 8 characters, must contain at least 1 number, 1 capital letter and 1 small letter.
+                The password must be at least 8 characters, must contain at least 1 number, 1 capital letter and 1 small
+                letter.
             </div>
         );
     }
 };
 
-export default function register() {
+const Register = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [formState, setFormState] = useState({email:'',password:''});
-    const { email, password} = formState;
+    const [formState, setFormState] = useState({email: '', password: ''});
+    const {email, password} = formState;
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const form = useRef();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const checkBtn = useRef();
 
-    function onValueChange(e) {
+    const onValueChange = (e) => {
         let value = e.target.value;
         let name = e.target.name;
         setFormState({...formState, [name]: value});
-    }
-    function handleRegister(e) {
+    };
+
+    const handleRegister = (e) => {
         e.preventDefault();
         form.current.validateAll();
         localStorage.clear();
-        localStorage.setItem('email',formState.email);
-        localStorage.setItem('password',formState.password);
+        localStorage.setItem('email', formState.email);
+        localStorage.setItem('password', formState.password);
         console.log(localStorage);
-    }
+    };
 
     return (
         <>
             <div className="container">
                 <h1>Registration</h1>
-                <Form onSubmit={handleRegister} ref={form} >
+                <Form onSubmit={handleRegister} ref={form}>
                     <FormGroup row className="mt-3">
                         <Label for="email" sm={1}>Email</Label>
                         <Col sm={3}>
@@ -77,7 +79,7 @@ export default function register() {
                                 id="email"
                                 value={email}
                                 onChange={onValueChange}
-                                validations={[required,validEmail]}
+                                validations={[required, validEmail]}
                                 placeholder="Enter email"
                             />
                         </Col>
@@ -101,9 +103,11 @@ export default function register() {
                             <Button>Register</Button>
                         </Col>
                     </FormGroup>
-                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                    <CheckButton style={{display: "none"}} ref={checkBtn}/>
                 </Form>
             </div>
         </>
     );
-}
+};
+
+export default Register;
