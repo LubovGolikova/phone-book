@@ -50,18 +50,18 @@ const Register = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const checkBtn = useRef();
 
-    const onValueChange = (e) => {
-        let value = e.target.value;
-        let name = e.target.name;
-        setFormState({...formState, [name]: value});
+    const onValueChange1 = (name) => (e) => {
+        setFormState((prevState) => ({...prevState, [name]: e.target.value}));
     };
-
     const handleRegister = (e) => {
         e.preventDefault();
         form.current.validateAll();
         localStorage.clear();
-        localStorage.setItem('email', formState.email);
-        localStorage.setItem('password', formState.password);
+        let dataUser = [];
+        dataUser['email'] = formState.email;
+        dataUser['password'] = formState.password;
+        console.log(dataUser);
+        localStorage.setItem('user',dataUser.email + ','+dataUser.password);
         console.log(localStorage);
     };
 
@@ -78,7 +78,7 @@ const Register = () => {
                                 name="email"
                                 id="email"
                                 value={email}
-                                onChange={onValueChange}
+                                onChange={onValueChange1('email')}
                                 validations={[required, validEmail]}
                                 placeholder="Enter email"
                             />
@@ -92,7 +92,7 @@ const Register = () => {
                                 name="password"
                                 id="password"
                                 value={password}
-                                onChange={onValueChange}
+                                onChange={onValueChange1('password')}
                                 validation={[required, validPassword]}
                                 placeholder="Enter password"
                             />

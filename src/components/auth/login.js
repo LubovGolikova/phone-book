@@ -11,21 +11,21 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const form = useRef();
 
-    const onValueChange = (e) => {
-        let value = e.target.value;
-        let name = e.target.name;
-        setFormState((prevState) => ({...formState, [name]: value}));
-    };
-
     const onValueChange1 = (name) => (e) => {
         setFormState((prevState) => ({...prevState, [name]: e.target.value}));
     };
 
     const checkLogin = (e) => {
         e.preventDefault();
-        const email = localStorage.getItem('email');
-        const password = localStorage.getItem('password');
-        console.log(email, password);
+        const user = localStorage.getItem('user');
+        console.log(user);
+        if(user.includes(',')) {
+            let words = user.split(',');
+            let email = words[0];
+            let password = words[1];
+            console.log(email,"!!!",password);
+        }
+
         if (formState.email === email && formState.password === password) {
             console.log("login");
         } else {
@@ -46,7 +46,7 @@ const Login = () => {
                                 name="email"
                                 id="email"
                                 value={email}
-                                onChange={onValueChange}
+                                onChange={onValueChange1('email')}
                                 placeholder="Enter email"/>
                         </Col>
                     </FormGroup>
@@ -58,7 +58,7 @@ const Login = () => {
                                 name="password"
                                 id="password"
                                 value={password}
-                                onChange={onValueChange1('email')}
+                                onChange={onValueChange1('password')}
                                 placeholder="Enter password"/>
                         </Col>
                     </FormGroup>
