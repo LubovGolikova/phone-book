@@ -14,9 +14,6 @@ import Phone from './components/pages/phone';
 import NotFound from './components/pages/notFound';
 import RouterLink from './components/router/routerLink';
 
-
-
-
 function App() {
   return (
       <div>

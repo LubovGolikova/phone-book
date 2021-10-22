@@ -1,6 +1,8 @@
 import {Col, Button, FormGroup, Label} from 'reactstrap';
 import {useState, useRef} from "react";
 import {isEmail} from "validator";
+import useAuth from '../../redux/useAuth';
+
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -16,7 +18,6 @@ const required = (value) => {
         );
     }
 };
-
 const validEmail = (value) => {
     if (!isEmail(value)) {
         return (
@@ -56,7 +57,6 @@ const Register = () => {
     const handleRegister = (e) => {
         e.preventDefault();
         form.current.validateAll();
-        localStorage.clear();
         let dataUser = [];
         dataUser['email'] = formState.email;
         dataUser['password'] = formState.password;
@@ -64,6 +64,9 @@ const Register = () => {
         localStorage.setItem('user',dataUser.email + ','+dataUser.password);
         console.log(localStorage);
     };
+
+    const { register, login, logOut } = useAuth;
+
 
     return (
         <>

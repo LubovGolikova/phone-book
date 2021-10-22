@@ -4,7 +4,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT
-} from './action.type';
+} from '../actionTypes/action.type';
 
 const user = localStorage.getItem("user");
 
@@ -15,21 +15,18 @@ export const initialState = user
 const authReducer = (state = initialState, action) => {
     const {type, payload} = action;
     switch (type) {
+        case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                isLoggedIn: false,
+                isLoggedIn: true,
+                user: payload.user,
             };
         case REGISTER_FAIL:
             return {
                 ...state,
                 isLoggedIn: false,
-            };
-        case LOGIN_SUCCESS:
-            return {
-                ...state,
-                isLoggedIn: true,
-                user: payload.user,
+                user: null,
             };
         case LOGIN_FAIL:
             return {
