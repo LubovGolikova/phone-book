@@ -1,8 +1,8 @@
 import {Col, Button, FormGroup, Label} from 'reactstrap';
 import {useState, useRef} from "react";
 import {isEmail} from "validator";
-import useAuth from '../../redux/useAuth';
-
+import {useSelector, useDispatch} from "react-redux";
+import {login_success} from '../../store/slices/authSlice';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -28,7 +28,6 @@ const validEmail = (value) => {
     }
 };
 const validPassword = (value) => {
-    console.log("gdfg");
     let passwordValid = value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/);
     if (passwordValid) {
         return (
@@ -41,14 +40,13 @@ const validPassword = (value) => {
 };
 
 const Register = () => {
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    console.log(isLoggedIn);
+    const dispatch = useDispatch();
     const [formState, setFormState] = useState({email: '', password: ''});
     const {email, password} = formState;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const form = useRef();
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const checkBtn = useRef();
 
     const onValueChange1 = (name) => (e) => {
@@ -63,10 +61,8 @@ const Register = () => {
         console.log(dataUser);
         localStorage.setItem('user',dataUser.email + ','+dataUser.password);
         console.log(localStorage);
+        dispatch(login_success());
     };
-
-    const { register, login, logOut } = useAuth;
-
 
     return (
         <>
@@ -103,6 +99,7 @@ const Register = () => {
                     </FormGroup>
                     <FormGroup check row className="mt-3">
                         <Col sm={{size: 10, offset: 2}}>
+                            <span>{isLoggedIn}</span>
                             <Button>Register</Button>
                         </Col>
                     </FormGroup>

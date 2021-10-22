@@ -2,6 +2,7 @@
 import {Link, useParams} from 'react-router-dom';
 import {ROUTES} from "../constants/routes";
 import {Button} from "reactstrap";
+import Counter from '../../features/counter/counter';
 // import data from '../data/phones.json';
 
 const Phone = ({chosenPhone}) => {
@@ -23,6 +24,7 @@ const Phone = ({chosenPhone}) => {
                 <Link to={ROUTES.dynamic.edit(id)}>
                     <Button>edit</Button>
                 </Link>
+                <Counter></Counter>
             </div>
         </>
     );
