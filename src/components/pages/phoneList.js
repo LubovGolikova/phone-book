@@ -16,11 +16,12 @@ const sortData = data.sort(function (a, b) {
     }
     return 0;
 });
-const Phones = () => {
+
+const PhoneList = () => {
     const newdata = data.map((sortData) => {
         return (
             <div key={sortData.id}>
-                <Link to={ROUTES.dynamic.details(sortData.id)}>
+                <Link to={ROUTES.dynamic.details(sortData.id)} >
                     <CardTitle tag="h5">{sortData.name.last + ' ' + sortData.name.first}</CardTitle>
                 </Link>
             </div>
@@ -53,4 +54,4 @@ const Phones = () => {
     );
 };
 
-export default Phones;
+export default PhoneList;

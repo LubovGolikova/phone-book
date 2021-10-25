@@ -1,12 +1,13 @@
 import {Col, Button, FormGroup, Label} from 'reactstrap';
-import {useState, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import {isEmail} from "validator";
 import {useSelector, useDispatch} from "react-redux";
-import {login_success} from '../../store/slices/authSlice';
+import {login_success, authSelector} from '../../store/slices/authSlice';
+import { useHistory } from 'react-router-dom';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+import {ROUTES} from "../constants/routes";
 
 
 const required = (value) => {
@@ -40,35 +41,40 @@ const validPassword = (value) => {
 };
 
 const Register = () => {
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    console.log(isLoggedIn);
     const dispatch = useDispatch();
+    const {isSuccess, emailUser} = useSelector(authSelector);
+    const history = useHistory();
+
     const [formState, setFormState] = useState({email: '', password: ''});
     const {email, password} = formState;
 
-    const form = useRef();
-    const checkBtn = useRef();
+    console.log(isSuccess, emailUser);
 
     const onValueChange1 = (name) => (e) => {
         setFormState((prevState) => ({...prevState, [name]: e.target.value}));
     };
+
     const handleRegister = (e) => {
         e.preventDefault();
-        form.current.validateAll();
-        let dataUser = [];
-        dataUser['email'] = formState.email;
-        dataUser['password'] = formState.password;
-        console.log(dataUser);
-        localStorage.setItem('user',dataUser.email + ','+dataUser.password);
-        console.log(localStorage);
-        dispatch(login_success());
+
+        const user = localStorage.getItem('email');
+        if (user) {
+            console.log(user);
+        }
+        dispatch(login_success(formState.email));
     };
+
+    useEffect(() => {
+        if (emailUser !== '') {
+            history.push(ROUTES.static.main);
+        }
+    }, [emailUser, history]);
 
     return (
         <>
             <div className="container">
                 <h1>Registration</h1>
-                <Form onSubmit={handleRegister} ref={form}>
+                <Form onSubmit={handleRegister} >
                     <FormGroup row className="mt-3">
                         <Label for="email" sm={1}>Email</Label>
                         <Col sm={3}>
@@ -99,11 +105,9 @@ const Register = () => {
                     </FormGroup>
                     <FormGroup check row className="mt-3">
                         <Col sm={{size: 10, offset: 2}}>
-                            <span>{isLoggedIn}</span>
                             <Button>Register</Button>
                         </Col>
                     </FormGroup>
-                    <CheckButton style={{display: "none"}} ref={checkBtn}/>
                 </Form>
             </div>
         </>

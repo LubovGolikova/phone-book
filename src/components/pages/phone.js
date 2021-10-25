@@ -1,30 +1,33 @@
-// import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import {Link, useParams} from 'react-router-dom';
 import {ROUTES} from "../constants/routes";
-import {Button} from "reactstrap";
-import Counter from '../../features/counter/counter';
-// import data from '../data/phones.json';
+import data from '../data/phones.json';
 
-const Phone = ({chosenPhone}) => {
+const Phone = () => {
     const {id} = useParams();
-    console.log(id);
-    console.log(chosenPhone);
+    const chosenPhone = data.find(item => item.id === id);
     return (
         <>
             <div className="container">
                 <h1>Phone details</h1>
-                {/*<Card key={chosenPhone.id}>*/}
-                {/*    <CardBody>*/}
-                {/*        <CardTitle tag="h5">{chosenPhone.name.last + ' '+ chosenPhone.name.first }</CardTitle>*/}
-                {/*        <CardSubtitle tag="h6" className="mb-2 text-muted">{chosenPhone.phone}</CardSubtitle>*/}
-                {/*        <CardText>{chosenPhone.company}</CardText>*/}
-                {/*        <Button >edit</Button>*/}
-                {/*    </CardBody>*/}
-                {/*</Card>*/}
-                <Link to={ROUTES.dynamic.edit(id)}>
-                    <Button>edit</Button>
-                </Link>
-                <Counter></Counter>
+                <Card key={chosenPhone.id}>
+                    <CardBody>
+                        <CardTitle tag="h5">{chosenPhone.name.last + ' '+ chosenPhone.name.first }</CardTitle>
+                        <label>Phone: </label>
+                        <CardSubtitle tag="h6" className="mb-2 text-muted">{chosenPhone.phone}</CardSubtitle>
+                        <label>Company: </label>
+                        <CardText>{chosenPhone.company}</CardText>
+                        <label>Email: </label>
+                        <CardText>{chosenPhone.email}</CardText>
+                        <label>Address: </label>
+                        <CardText>{chosenPhone.address}</CardText>
+                        <label>Registered: </label>
+                        <CardText>{chosenPhone.registered}</CardText>
+                        <Link to={ROUTES.dynamic.edit(id)}>
+                            <Button>edit</Button>
+                        </Link>
+                    </CardBody>
+                </Card>
             </div>
         </>
     );

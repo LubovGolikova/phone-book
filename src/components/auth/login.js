@@ -1,15 +1,17 @@
 import {Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {ROUTES} from "../constants/routes";
-import {useState, useRef} from "react";
+import {useEffect, useState} from "react";
+import {login_success, authSelector} from "../../store/slices/authSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const dispatch = useDispatch();
+    const {isSuccess, emailUser} = useSelector(authSelector);
+
     let [formState, setFormState] = useState({email: '', password: ''});
     let {email, password} = formState;
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const form = useRef();
+    const history = useHistory();
 
     const onValueChange1 = (name) => (e) => {
         setFormState((prevState) => ({...prevState, [name]: e.target.value}));
@@ -18,26 +20,23 @@ const Login = () => {
     const checkLogin = (e) => {
         e.preventDefault();
         const user = localStorage.getItem('user');
-        console.log(user);
-        if(user.includes(',')) {
-            let words = user.split(',');
-            let email = words[0];
-            let password = words[1];
-            console.log(email,"!!!",password);
+        if (user) {
+            console.log(user);
         }
-
-        if (formState.email === email && formState.password === password) {
-            console.log("login");
-        } else {
-            console.log("not login");
-        }
+        dispatch(login_success(formState.email));
     };
+
+    useEffect(() => {
+        if (emailUser !== '' && isSuccess) {
+            history.push(ROUTES.static.main);
+        }
+    }, [emailUser, history, isSuccess]);
 
     return (
         <>
             <div className="container">
                 <h1>Login</h1>
-                <Form onSubmit={checkLogin} ref={form}>
+                <Form onSubmit={checkLogin} >
                     <FormGroup row className="mt-3">
                         <Label for="email" sm={1}>Email</Label>
                         <Col sm={3}>

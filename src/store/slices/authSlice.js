@@ -1,27 +1,41 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const initialState = {
-    isLoggedIn:false,
-    isLogginLoading: false,
-    error: false
-};
-
 export const authSlice = createSlice({
     name: 'auth',
-    initialState,
+    initialState: {
+        emailUser: "",
+        isSuccess: false,
+        isLoading: false,
+        isError: false
+    },
     reducers: {
+        clearState:(state) => {
+            state.emailUser = "";
+            state.isSuccess = false;
+            state.isLoading = false;
+            state.isError = false;
+
+            return state;
+        },
+         login_success:(state,action) => {
+            state.isSuccess = true;
+            state.emailUser = action.payload;
+            localStorage.setItem('email',JSON.stringify(action.payload))
+        },
         login_request:(state) => {
-            state.isLogginLoading = true
-        },
-        login_success:(state,action) => {
-            state.isLoggedIn = true
-        },
-        login_fail:(state) => {
-            state.error = true
+            state.isLoading = true;
         },
 
+        login_fail:(state) => {
+            state.isError = true;
+        },
+        logout_success: (state,action) => {
+            state.emailUser = "";
+            localStorage.removeItem('email');
+        }
     }
 });
 
-export const {login_request, login_success, login_fail} =authSlice.actions;
+export const {login_request, login_success, login_fail, logout_success, clearState} = authSlice.actions;
 export default authSlice.reducer;
+export const authSelector = (state) => state.auth;
