@@ -2,12 +2,12 @@ import {Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link, useHistory} from 'react-router-dom';
 import {ROUTES} from "../constants/routes";
 import {useEffect, useState} from "react";
-import {login_success, authSelector} from "../../store/slices/authSlice";
+import {login_success, authSelector} from "../../slices/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {
     const dispatch = useDispatch();
-    const {isSuccess, emailUser} = useSelector(authSelector);
+    const {isSuccess, emailUser, isLoading} = useSelector(authSelector);
 
     let [formState, setFormState] = useState({email: '', password: ''});
     let {email, password} = formState;
@@ -31,6 +31,12 @@ const Login = () => {
             history.push(ROUTES.static.main);
         }
     }, [emailUser, history, isSuccess]);
+
+    useEffect(() => {
+        if(isLoading) {
+            return <span>Loading...</span>
+        }
+    },[isLoading]);
 
     return (
         <>

@@ -2,13 +2,12 @@ import {Col, Button, FormGroup, Label} from 'reactstrap';
 import React, {useState, useEffect} from "react";
 import {isEmail} from "validator";
 import {useSelector, useDispatch} from "react-redux";
-import {login_success, authSelector} from '../../store/slices/authSlice';
+import {login_success, authSelector} from '../../slices/authSlice';
 import { useHistory } from 'react-router-dom';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import {ROUTES} from "../constants/routes";
-
 
 const required = (value) => {
     if (!value) {
@@ -65,7 +64,7 @@ const Register = () => {
     };
 
     useEffect(() => {
-        if (emailUser !== '') {
+        if (emailUser) {
             history.push(ROUTES.static.main);
         }
     }, [emailUser, history]);

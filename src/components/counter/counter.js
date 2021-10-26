@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from "react-redux";
-import {decrement, increment} from '../../store/slices/counterSlice';
+import {decrement, increment} from '../../slices/counterSlice';
 import {Button} from 'reactstrap';
 
 const Counter = () => {

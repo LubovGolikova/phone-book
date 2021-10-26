@@ -25,7 +25,6 @@ export const authSlice = createSlice({
         login_request:(state) => {
             state.isLoading = true;
         },
-
         login_fail:(state) => {
             state.isError = true;
         },
