@@ -18,6 +18,7 @@ export const phoneSlice = createSlice({
             state.isLoading = true;
         },
         reset_phones_loading:(state) => {
+            state.phones = [];
             state.isLoading = false;
         }
     }

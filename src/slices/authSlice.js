@@ -18,8 +18,8 @@ export const authSlice = createSlice({
             return state;
         },
          login_success:(state,action) => {
-            state.isSuccess = true;
-            state.emailUser = action.payload;
+             state.emailUser = action.payload;
+             state.isSuccess = true;
             localStorage.setItem('email',JSON.stringify(action.payload))
         },
         login_request:(state) => {
@@ -30,6 +30,9 @@ export const authSlice = createSlice({
         },
         logout_success: (state,action) => {
             state.emailUser = "";
+            state.isSuccess = false;
+            state.isLoading = false;
+            state.isError = false;
             localStorage.removeItem('email');
         }
     }
