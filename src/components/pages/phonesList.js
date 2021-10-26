@@ -2,6 +2,9 @@ import {CardTitle,} from 'reactstrap';
 import data from '../data/phones.json';
 import {ROUTES} from "../constants/routes";
 import {Link} from "react-router-dom";
+import {phonesSelector, set_phones, set_phones_loading,reset_phones_loading} from "../../slices/phonesSlice";
+import {useSelector, useDispatch} from "react-redux";
+import {useEffect} from "react";
 // import AlphabetList from "react-alphabet-list";
 
 //TODO alphabets sort
@@ -17,7 +20,12 @@ const sortData = data.sort(function (a, b) {
     return 0;
 });
 
-const PhoneList = () => {
+const PhonesList = () => {
+    const dispatch = useDispatch();
+    const {phones, isLoading} = useSelector(phonesSelector);
+    dispatch(set_phones_loading());
+
+
     const newdata = data.map((sortData) => {
         return (
             <div key={sortData.id}>
@@ -32,7 +40,18 @@ const PhoneList = () => {
         return {name}
     });
     console.log(result);
+    useEffect(() => {
+        if(isLoading) {
 
+            return <span> Loading...</span>
+        }
+        if(!phones) {
+            console.log("here!");
+            dispatch(reset_phones_loading());
+            dispatch(set_phones(result));
+            console.log(isLoading);
+        }
+    },[dispatch,phones,isLoading, result]);
     return (
         <div className="container">
             <h1>Phone Book</h1>
@@ -54,4 +73,4 @@ const PhoneList = () => {
     );
 };
 
-export default PhoneList;
+export default PhonesList;

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-export const phoneSlice = createSlice({
-    name: 'phone',
+export const phonesSlice = createSlice({
+    name: 'phones',
     initialState: {
         phones: [],
         isLoading: false
@@ -23,6 +23,6 @@ export const phoneSlice = createSlice({
         }
     }
 });
-export const {clearState, set_phones, set_phones_loading, reset_phones_loading} = phoneSlice.actions;
-export default phoneSlice.reducer;
-export const phoneSelector = (state) => state.phone;
+export const {clearState, set_phones, set_phones_loading, reset_phones_loading} = phonesSlice.actions;
+export default phonesSlice.reducer;
+export const phonesSelector = (state) => state.phones;

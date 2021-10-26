@@ -7,7 +7,7 @@ import {ROUTES} from "./components/constants/routes";
 import Login from './components/auth/login';
 import Register from './components/auth/register'
 
-import PhoneList from './components/pages/phoneList';
+import PhonesList from './components/pages/phonesList';
 import AddPhone from './components/pages/addPhone';
 import EditPhone from "./components/pages/editPhone";
 import Phone from './components/pages/phone';
@@ -21,7 +21,7 @@ function App() {
           <div>
             <RouterLink/>
             <Switch>
-              <Route exact path={ROUTES.static.main} component={PhoneList}/>
+              <Route exact path={ROUTES.static.main} component={PhonesList}/>
               <Route exact path={ROUTES.static.add} component={AddPhone}/>
               <Route exact path={ROUTES.static.login} component={Login}/>
               <Route exact path={ROUTES.static.register} component={Register}/>
