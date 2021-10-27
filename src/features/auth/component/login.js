@@ -1,8 +1,8 @@
 import {Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link, useHistory} from 'react-router-dom';
-import {ROUTES} from "../constants/routes";
+import {ROUTES} from "../../constants/routes";
 import {useEffect, useState} from "react";
-import {login_success, authSelector} from "../../slices/authSlice";
+import {login_success, authSelector} from "../redux/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {

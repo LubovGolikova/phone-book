@@ -1,7 +1,7 @@
 import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import {Link, useParams} from 'react-router-dom';
-import {ROUTES} from "../constants/routes";
-import data from '../data/phones.json';
+import {ROUTES} from "../../../constants/routes";
+import data from '../../../data/phones.json';
 
 const Phone = () => {
     const {id} = useParams();

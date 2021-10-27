@@ -1,8 +1,8 @@
 import {CardTitle,} from 'reactstrap';
-import data from '../data/phones.json';
-import {ROUTES} from "../constants/routes";
+import data from '../../../data/phones.json';
+import {ROUTES} from "../../../constants/routes";
 import {Link} from "react-router-dom";
-import {phonesSelector, set_phones, set_phones_loading,reset_phones_loading} from "../../slices/phonesSlice";
+import {phonesSelector, setPhones, setPhonesLoading,resetPhonesLoading} from "../redux/phonesSlice";
 import {useSelector, useDispatch} from "react-redux";
 import {useEffect} from "react";
 // import AlphabetList from "react-alphabet-list";
@@ -23,7 +23,7 @@ const sortData = data.sort(function (a, b) {
 const PhonesList = () => {
     const dispatch = useDispatch();
     const {phones, isLoading} = useSelector(phonesSelector);
-    dispatch(set_phones_loading());
+    dispatch(setPhonesLoading());
 
 
     const newdata = data.map((sortData) => {
@@ -47,29 +47,34 @@ const PhonesList = () => {
         }
         if(!phones) {
             console.log("here!");
-            dispatch(reset_phones_loading());
-            dispatch(set_phones(result));
+            dispatch(resetPhonesLoading());
+            dispatch(setPhones(result));
             console.log(isLoading);
         }
-    },[dispatch,phones,isLoading, result]);
+    },[dispatch,phones,isLoading,result]);
     return (
-        <div className="container">
-            <h1>Phone Book</h1>
-            {
-                newdata
+        <>
+            if(isLoading) {
+              <span> Loading...</span>
             }
-            {/*<AlphabetList*/}
-            {/*    key={result}*/}
-            {/*    className="alpha-list"*/}
-            {/*    data={result}*/}
-            {/*    generateFn={*/}
-            {/*        (item, index) => {*/}
-            {/*        return (*/}
-            {/*                <div key={item.id}>{item}</div>*/}
-            {/*        );*/}
-            {/*    }}*/}
-            {/*/>*/}
-        </div>
+            <div className="container">
+                <h1>Phone Book</h1>
+                {
+                    newdata
+                }
+                {/*<AlphabetList*/}
+                {/*    key={result}*/}
+                {/*    className="alpha-list"*/}
+                {/*    data={result}*/}
+                {/*    generateFn={*/}
+                {/*        (item, index) => {*/}
+                {/*        return (*/}
+                {/*                <div key={item.id}>{item}</div>*/}
+                {/*        );*/}
+                {/*    }}*/}
+                {/*/>*/}
+            </div>
+        </>
     );
 };
 

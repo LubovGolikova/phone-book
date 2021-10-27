@@ -3,16 +3,16 @@ import React from "react";
 import {BrowserRouter as Router, Redirect, Switch, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {ROUTES} from "./components/constants/routes";
-import Login from './components/auth/login';
-import Register from './components/auth/register'
+import {ROUTES} from "./features/constants/routes";
+import Login from './features/auth/component/login';
+import Register from './features/auth/component/register'
 
-import PhonesList from './components/pages/phonesList';
-import AddPhone from './components/pages/addPhone';
-import EditPhone from "./components/pages/editPhone";
-import Phone from './components/pages/phone';
-import NotFound from './components/pages/notFound';
-import RouterLink from './components/router/routerLink';
+import PhonesList from './features/pages/phoneList/component/phonesList';
+import AddPhone from './features/pages/phone/component/addPhone';
+import EditPhone from "./features/pages/phone/component/editPhone";
+import Phone from './features/pages/phone/component/phone';
+import NotFound from './features/pages/error/notFound';
+import RouterLink from './features/router/routerLink';
 
 function App() {
   return (

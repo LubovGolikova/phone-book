@@ -2,12 +2,12 @@ import {Col, Button, FormGroup, Label} from 'reactstrap';
 import React, {useState, useEffect} from "react";
 import {isEmail} from "validator";
 import {useSelector, useDispatch} from "react-redux";
-import {login_success, authSelector} from '../../slices/authSlice';
+import {login_success, authSelector} from '../redux/authSlice';
 import { useHistory } from 'react-router-dom';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import {ROUTES} from "../constants/routes";
+import {ROUTES} from "../../constants/routes";
 
 const required = (value) => {
     if (!value) {
