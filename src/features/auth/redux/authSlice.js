@@ -1,10 +1,10 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import authService from '../services/auth.service';
+// import authService from '../services/auth.service';
 export const register = createAsyncThunk(
     '/register',
     async({email, password}, thunkAPI) => {
         try {
-            console.log("sadad");
+            console.log("sadad")
             // const res = await authService;
         } catch (e) {
             console.log('Error', e.response.data);
@@ -41,10 +41,8 @@ export const authSlice = createSlice({
         loginFail:(state) => {
             state.isError = true;
         },
-        logoutSuccess: () => {
-            authState;
-            localStorage.removeItem('email');
-        }
+    //     logoutSuccess: () => {this.authState
+    //     },
     }
 });
 
